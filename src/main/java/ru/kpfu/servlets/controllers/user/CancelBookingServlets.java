@@ -1,8 +1,7 @@
-package ru.kpfu.servlets.controllers;
+package ru.kpfu.servlets.controllers.user;
 
 import ru.kpfu.servlets.service.BookingService;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

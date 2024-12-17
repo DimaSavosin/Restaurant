@@ -32,6 +32,11 @@ public class BookingService {
         return bookingDAO.getAll();
     }
 
+    public List<Booking> getAllBookingsWithUserNames() {
+        return bookingDAO.getAllWithUserNames();
+    }
+
+
 
 
 

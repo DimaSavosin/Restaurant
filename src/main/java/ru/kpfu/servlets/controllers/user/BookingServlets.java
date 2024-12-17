@@ -1,4 +1,4 @@
-package ru.kpfu.servlets.controllers;
+package ru.kpfu.servlets.controllers.user;
 
 import ru.kpfu.servlets.models.Booking;
 import ru.kpfu.servlets.models.Tables;

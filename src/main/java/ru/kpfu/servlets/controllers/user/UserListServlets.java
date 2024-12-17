@@ -1,4 +1,4 @@
-package ru.kpfu.servlets.controllers;
+package ru.kpfu.servlets.controllers.user;
 
 import ru.kpfu.servlets.dto.UserDto;
 import ru.kpfu.servlets.service.UserService;

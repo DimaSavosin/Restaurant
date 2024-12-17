@@ -23,6 +23,8 @@ public class BookingDAOImpl implements BookingDAO {
     private static final String UPDATE_STATUS_SQL = "update bookings set status = 'canceled' where id = ?";
     private static final String SELECT_BOOKING_BY_USER_ID_SQL = "SELECT * FROM bookings WHERE user_id = ? AND status IN ('confirmed', 'pending') AND status != 'cancelled' AND (booking_date + booking_time + (duration * INTERVAL '1 hour')) > CURRENT_TIMESTAMP AT TIME ZONE 'Europe/Moscow' ";
     private static final String UPDATE_BOOKING_STATUS_SQL = "update bookings set status = ? where id = ?";
+    private static final String SELECT_BOOKING_WITH_USERNAME_SQL = "SELECT b.*, u.name AS user_name FROM bookings b JOIN users u ON b.user_id = u.id";
+
 
 
     @Override
@@ -170,5 +172,30 @@ public class BookingDAOImpl implements BookingDAO {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public List<Booking> getAllWithUserNames() {
+        List<Booking> bookings = new ArrayList<>();
+        try(Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BOOKING_WITH_USERNAME_SQL)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                bookings.add(Booking.builder()
+                        .id(resultSet.getInt("id"))
+                        .user_id(resultSet.getInt("user_id"))
+                        .tableId(resultSet.getInt("table_id"))
+                        .bookingDate(resultSet.getObject("booking_date", LocalDate.class))
+                        .bookingTime(resultSet.getObject("booking_time", LocalTime.class))
+                        .duration(resultSet.getInt("duration"))
+                        .status(resultSet.getString("status"))
+                        .userName(resultSet.getString("user_name")) // Имя пользователя
+                        .build());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return bookings;
+    }
+
 
 }

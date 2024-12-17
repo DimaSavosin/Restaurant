@@ -12,6 +12,7 @@
     <thead>
     <tr>
         <th>ID</th>
+        <th>Имя</th>
         <th>Номер стола</th>
         <th>Дата</th>
         <th>Время</th>
@@ -23,6 +24,7 @@
     <c:forEach var="booking" items="${bookings}">
         <tr>
             <td>${booking.id}</td>
+            <td>${booking.userName}</td>
             <td>${booking.tableId}</td>
             <td>${booking.bookingDate}</td>
             <td>${booking.bookingTime}</td>

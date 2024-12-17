@@ -11,5 +11,6 @@ public interface BookingDAO extends CrudDAO<Booking> {
     void cancelBooking(int bookingId);
     List<Booking> getActiveBookingsByUserId(int userId);
     void updateBookingStatus(int bookingId, String newStatus);
+    List<Booking> getAllWithUserNames();
 
 }

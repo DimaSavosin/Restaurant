@@ -20,4 +20,5 @@ public class Booking {
     private LocalTime bookingTime;
     private int duration; // Продолжительность в часах
     private String status;
+    private String userName;
 }

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 @WebServlet("/admin/bookings/confirm")
-public class AdminConfirmBookingServlet extends HttpServlet {
+public class AdminConfirmBookingServlets extends HttpServlet {
     private BookingService bookingService;
 
     @Override
