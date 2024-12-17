@@ -1,0 +1,30 @@
+.navbar {
+    background-color: #4CAF50; /* Цвет фона для навигационной панели */
+    display: flex; /* Используем flexbox для навигационной панели */
+    justify-content: space-between; /* Распределяем пространство между заголовком и ссылками */
+    align-items: center; /* Центрируем элементы по вертикали */
+    padding: 15px; /* Добавляем отступы */
+}
+
+.nav-links {
+    display: flex; /* Используем flexbox для ссылок */
+    justify-content: flex-end; /* Выравниваем ссылки вправо */
+}
+
+.nav-links a {
+    color: white; /* Цвет текста ссылок */
+    text-decoration: none; /* Убираем подчеркивание для ссылок */
+    margin-left: 20px; /* Отступ между ссылками */
+    font-size: 18px; /* Размер шрифта для ссылок */
+}
+
+.nav-links a:hover {
+    text-decoration: underline; /* Подчеркивание при наведении на ссылку */
+}
+
+.navbar h1 {
+    margin: 0; /* Убираем отступы у заголовка */
+    font-family: Arial, sans-serif; /* Шрифт для заголовка */
+    text-align: center; /* Центрируем заголовок */
+    flex: 1; /* Позволяем заголовку занимать доступное пространство */
+}
