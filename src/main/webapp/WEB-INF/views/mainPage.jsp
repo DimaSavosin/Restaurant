@@ -18,7 +18,7 @@
         </c:if>
 
 
-        <a href="<c:url value='/users' />">Пользователи сайта</a>
+
 
 
         <c:if test="${not empty sessionScope.userId}">
@@ -28,6 +28,7 @@
         <a href="<c:url value='/bookingForm' />">Забронировать стол</a>
         <a href="<c:url value='/view-menu' />">Меню</a>
         <a href="<c:url value='/favoriteTables' />" > Избранные </a>
+        <a href="<c:url value='/reviews' />">Отзывы</a>
     </nav>
 </header>
 </body>

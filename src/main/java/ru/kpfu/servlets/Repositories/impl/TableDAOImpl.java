@@ -13,9 +13,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TableDAOImpl implements TableDAO {
     private final DataSource dataSource;
-    private static final String INSERT_TABLE_SQL = "INSERT INTO tables (table_number, seating_capacity, location, status, is_available, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private static final String INSERT_TABLE_SQL = "INSERT INTO tables (table_number, seating_capacity, location) VALUES (?, ?, ?)";
     private static final String DELETE_TABLE_SQL = "DELETE FROM tables WHERE id = ?";
-    private static final String UPDATE_TABLE_SQL = "UPDATE tables SET table_number = ?, seating_capacity = ?, location = ?, status = ?, is_available = ?, updated_at = ? WHERE id = ?";
+    private static final String UPDATE_TABLE_SQL = "UPDATE tables SET table_number = ?, seating_capacity = ?, location = ? WHERE id = ?";
     private static final String FILTER_TABLE_SQL = """
         SELECT t.* FROM tables t
            WHERE t.location = ?
@@ -82,10 +82,8 @@ public class TableDAOImpl implements TableDAO {
             preparedStatement.setInt(1, table.getTableNumber());
             preparedStatement.setInt(2, table.getSeatingCapacity());
             preparedStatement.setString(3, table.getLocation());
-            preparedStatement.setString(4, table.getStatus());
-            preparedStatement.setBoolean(5, table.isAvailable());
-            preparedStatement.setObject(6, table.getCreatedAt());
-            preparedStatement.setObject(7, table.getUpdatedAt());
+
+
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -111,10 +109,7 @@ public class TableDAOImpl implements TableDAO {
             preparedStatement.setInt(1, table.getTableNumber());
             preparedStatement.setInt(2, table.getSeatingCapacity());
             preparedStatement.setString(3, table.getLocation());
-            preparedStatement.setString(4, table.getStatus());
-            preparedStatement.setBoolean(5, table.isAvailable());
-            preparedStatement.setObject(6, table.getUpdatedAt());
-            preparedStatement.setInt(7, table.getId());
+            preparedStatement.setInt(4, table.getId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

@@ -1,5 +1,6 @@
 package ru.kpfu.servlets.models;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,10 +11,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-
-public class Reviews {
+public class Review {
     private int id;
+    private int userId;
+    private String userName;
     private int rating;
     private String comment;
-    private LocalDateTime createdAt;
+    private Timestamp createdAt;
+
 }
+

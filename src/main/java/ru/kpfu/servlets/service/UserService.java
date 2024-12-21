@@ -71,7 +71,7 @@ public class UserService {
         }
     }
 
-    // Преобразование модели User в DTO
+
     private UserDto mapToDto(User user) {
         if (user == null) return null;
 
@@ -82,5 +82,4 @@ public class UserService {
                 .role(user.getRole())
                 .build();
     }
-
 }

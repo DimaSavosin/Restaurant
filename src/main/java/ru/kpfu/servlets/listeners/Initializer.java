@@ -36,6 +36,7 @@ public class Initializer implements ServletContextListener {
         MenuDAO menuDAO = new MenuDAOImpl(dataSource);
         FavoriteTableDAO favoriteTableDAO = new FavoriteTableDAOImpl(dataSource);
         FileDAO fileDAO = new FileDAOImpl(dataSource);
+        ReviewDAO reviewDAO = new ReviewDAOImpl(dataSource);
 
 
 
@@ -46,6 +47,7 @@ public class Initializer implements ServletContextListener {
         MenuService menuService = new MenuService(menuDAO);
         FavoriteTableService favoriteTableService = new FavoriteTableService(favoriteTableDAO);
         FileService fileService = new FileService(fileDAO);
+        ReviewService reviewService = new ReviewService(reviewDAO);
 
 
 
@@ -57,6 +59,6 @@ public class Initializer implements ServletContextListener {
         sce.getServletContext().setAttribute("menuService", menuService);
         sce.getServletContext().setAttribute("favoriteTableService", favoriteTableService);
         sce.getServletContext().setAttribute("fileService", fileService);
-
+        sce.getServletContext().setAttribute("reviewService", reviewService);
     }
 }

@@ -16,9 +16,7 @@ public class Tables {
     private int tableNumber;
     private int seatingCapacity;
     private String location;
-    private String status;
-    private boolean isAvailable;
-    private LocalDateTime createdAt;  // Дата создания записи
-    private LocalDateTime updatedAt;  // Дата последнего обновления записи
+
+
 
 }

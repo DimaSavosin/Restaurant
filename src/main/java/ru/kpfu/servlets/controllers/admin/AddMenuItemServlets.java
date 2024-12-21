@@ -42,7 +42,7 @@ public class AddMenuItemServlets extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        // Получение параметров из формы
+
         String name = req.getParameter("name");
         String description = req.getParameter("description");
         int price = Integer.parseInt(req.getParameter("price"));

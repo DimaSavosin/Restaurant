@@ -1,4 +1,4 @@
-package ru.kpfu.servlets.controllers.user;
+package ru.kpfu.servlets.controllers.admin;
 
 import ru.kpfu.servlets.dto.UserDto;
 import ru.kpfu.servlets.service.UserService;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/users")
-public class UserListServlets extends HttpServlet {
+@WebServlet("/admin/users")
+public class AdminUserListServlets extends HttpServlet {
     private UserService userService;
 
     @Override
@@ -31,6 +31,6 @@ public class UserListServlets extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Ошибка при получении списка пользователей.");
         }
 
-        getServletContext().getRequestDispatcher("/WEB-INF/views/userList.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/views/admin/userList.jsp").forward(req, resp);
     }
 }

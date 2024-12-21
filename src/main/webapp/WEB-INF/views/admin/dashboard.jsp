@@ -12,6 +12,7 @@
         <li><a href="${pageContext.request.contextPath}/admin/bookings">Актуальные бронирования</a></li>
         <li><a href="${pageContext.request.contextPath}/admin/bookingHistory">История бронирований</a></li>
         <li><a href="${pageContext.request.contextPath}/admin/addMenuItem">Добавить блюдо</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/tables">Добавить стол</a></li>
     </ul>
 </nav>
 
