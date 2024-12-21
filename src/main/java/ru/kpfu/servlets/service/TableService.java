@@ -23,6 +23,11 @@ public class TableService {
         return tableDAO.getAvailableTables(location, bookingDate, bookingTime, durationHours);
     }
 
+    public Tables getTableById(int tableId) {
+        return tableDAO.getTableById(tableId);
+    }
+
+
 
 
 

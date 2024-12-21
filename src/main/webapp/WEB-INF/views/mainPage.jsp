@@ -26,6 +26,8 @@
         </c:if>
 
         <a href="<c:url value='/bookingForm' />">Забронировать стол</a>
+        <a href="<c:url value='/view-menu' />">Меню</a>
+        <a href="<c:url value='/favoriteTables' />" > Избранные </a>
     </nav>
 </header>
 </body>

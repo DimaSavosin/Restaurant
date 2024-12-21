@@ -36,6 +36,24 @@ public class BookingService {
         return bookingDAO.getAllWithUserNames();
     }
 
+    public List<Booking> getActiveBookings() {
+        return bookingDAO.getActiveBookings();
+    }
+
+    public List<Booking> getHistoricalBookings() {
+        return bookingDAO.getHistoricalBookings();
+    }
+
+    public int createBooking(int userId) {
+        Booking booking = Booking.builder()
+                .user_id(userId)
+                .status("pending")
+                .build();
+        return bookingDAO.saveAndReturnId(booking); // Сохраняем и возвращаем ID
+    }
+
+
+
 
 
 

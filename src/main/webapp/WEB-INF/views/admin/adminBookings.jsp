@@ -21,7 +21,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="booking" items="${bookings}">
+    <c:forEach var="booking" items="${activeBookings}">
         <tr>
             <td>${booking.id}</td>
             <td>${booking.userName}</td>
@@ -46,5 +46,6 @@
     </c:forEach>
     </tbody>
 </table>
+<a href="${pageContext.request.contextPath}/admin/bookingHistory">История бронирования</a>
 </body>
 </html>

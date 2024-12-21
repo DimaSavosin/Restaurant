@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/admin/bookings")
-public class AdminBookingServlets extends HttpServlet {
+@WebServlet("/admin/bookingHistory")
+public class AdminHistoryBookingsServlets extends HttpServlet {
     private BookingService bookingService;
 
     @Override
@@ -22,12 +22,11 @@ public class AdminBookingServlets extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Booking> activeBookings = bookingService.getActiveBookings();
+        List<Booking> historicalBookings = bookingService.getHistoricalBookings();
 
 
-        req.setAttribute("activeBookings", activeBookings);
-
-        req.getRequestDispatcher("/WEB-INF/views/admin/adminBookings.jsp").forward(req, resp);
+        req.setAttribute("historicalBookings", historicalBookings);
+        req.getRequestDispatcher("/WEB-INF/views/admin/adminHistoryBookings.jsp").forward(req, resp);
     }
 }
 

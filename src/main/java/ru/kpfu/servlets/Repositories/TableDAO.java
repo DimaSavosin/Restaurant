@@ -9,5 +9,5 @@ import java.util.List;
 public interface TableDAO extends CrudDAO<Tables> {
     boolean isTableAvailable(int tableId, LocalDate bookingDate, LocalTime bookingTime);
     List<Tables> getAvailableTables(String location, LocalDate bookingDate, LocalTime bookingTime, int durationHours);
-
+    Tables getTableById(int tableId);
 }

@@ -154,6 +154,28 @@ public class TableDAOImpl implements TableDAO {
         return availableTables;
     }
 
+    @Override
+    public Tables getTableById(int tableId) {
+        String sql = "SELECT * FROM tables WHERE id = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, tableId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return Tables.builder()
+                        .id(resultSet.getInt("id"))
+                        .tableNumber(resultSet.getInt("table_number"))
+                        .seatingCapacity(resultSet.getInt("seating_capacity"))
+                        .location(resultSet.getString("location"))
+                        .build();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to fetch table by ID", e);
+        }
+        return null; // Если стол с таким ID не найден
+    }
 
 
 }

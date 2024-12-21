@@ -12,5 +12,8 @@ public interface BookingDAO extends CrudDAO<Booking> {
     List<Booking> getActiveBookingsByUserId(int userId);
     void updateBookingStatus(int bookingId, String newStatus);
     List<Booking> getAllWithUserNames();
+    List<Booking> getActiveBookings();
+    List<Booking> getHistoricalBookings();
+    int saveAndReturnId(Booking booking);
 
 }

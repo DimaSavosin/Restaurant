@@ -1,16 +1,17 @@
 package ru.kpfu.servlets.models;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Menu {
     private int id;
     private String name;
-    private int price;
     private String description;
+    private int price;
+    private Integer fileId; // ID файла
+    private String imagePath; // Путь к изображению
 }
+

@@ -8,9 +8,12 @@
 <h1>Добро пожаловать в админ-панель!</h1>
 <nav>
     <ul>
-        <li><a href="<c:url value='/admin/users' />">Управление пользователями</a></li>
-        <li><a href="<c:url value='/admin/bookings' />">Управление бронированиями</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/users">Управление пользователями</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/bookings">Актуальные бронирования</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/bookingHistory">История бронирований</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/addMenuItem">Добавить блюдо</a></li>
     </ul>
 </nav>
+
 </body>
 </html>
