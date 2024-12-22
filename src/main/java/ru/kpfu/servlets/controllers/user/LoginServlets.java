@@ -1,6 +1,6 @@
 package ru.kpfu.servlets.controllers.user;
 
-import ru.kpfu.servlets.dto.UserDto;
+import ru.kpfu.servlets.dto.userDTO.UserDTO;
 import ru.kpfu.servlets.service.UserService;
 
 import javax.servlet.ServletException;
@@ -30,7 +30,7 @@ public class LoginServlets extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
-        UserDto userDto = userService.loginUser(email, password);
+        UserDTO userDto = userService.loginUser(email, password);
         if (userDto != null) {
             req.getSession().setAttribute("userId", userDto.getId());
             req.getSession().setAttribute("name", userDto.getName());

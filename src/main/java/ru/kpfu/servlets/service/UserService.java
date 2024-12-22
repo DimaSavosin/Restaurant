@@ -2,8 +2,8 @@ package ru.kpfu.servlets.service;
 
 import org.mindrot.jbcrypt.BCrypt;
 import ru.kpfu.servlets.Repositories.UserDAO;
-import ru.kpfu.servlets.dto.RegisterForm;
-import ru.kpfu.servlets.dto.UserDto;
+import ru.kpfu.servlets.dto.userDTO.RegisterForm;
+import ru.kpfu.servlets.dto.userDTO.UserDTO;
 import ru.kpfu.servlets.models.User;
 
 import java.sql.SQLException;
@@ -35,7 +35,7 @@ public class UserService {
     }
 
     // Аутентификация пользователя
-    public UserDto loginUser(String email, String password) {
+    public UserDTO loginUser(String email, String password) {
         try {
             User user = userDAO.getUserByEmail(email);
             if (user != null && BCrypt.checkpw(password, user.getPassword())) {
@@ -48,13 +48,13 @@ public class UserService {
     }
 
 
-    public UserDto getUserById(int id) {
+    public UserDTO getUserById(int id) {
         User user = userDAO.getUserById(id);
         return mapToDto(user);
     }
 
 
-    public List<UserDto> getAllUsers() throws SQLException {
+    public List<UserDTO> getAllUsers() throws SQLException {
         List<User> users = userDAO.getAll();
         return users.stream()
                 .map(this::mapToDto)
@@ -72,10 +72,10 @@ public class UserService {
     }
 
 
-    private UserDto mapToDto(User user) {
+    private UserDTO mapToDto(User user) {
         if (user == null) return null;
 
-        return UserDto.builder()
+        return UserDTO.builder()
                 .id(user.getId())
                 .name(user.getName())
                 .email(user.getEmail())

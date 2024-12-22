@@ -1,6 +1,6 @@
 package ru.kpfu.servlets.controllers.user;
 
-import ru.kpfu.servlets.dto.RegisterForm;
+import ru.kpfu.servlets.dto.userDTO.RegisterForm;
 import ru.kpfu.servlets.service.UserService;
 
 import javax.servlet.ServletException;
@@ -21,11 +21,20 @@ public class RegistrationServlets extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+
+
+        String error = req.getParameter("error");
+        if ("notAuthorized".equals(error)) {
+            req.setAttribute("errorMessage", "Пожалуйста, войдите в систему, чтобы получить доступ к этой странице.");
+        }
+
         req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
@@ -33,6 +42,7 @@ public class RegistrationServlets extends HttpServlet {
         RegisterForm registerForm = new RegisterForm(name, email, password);
 
         boolean isRegistered = userService.registerUser(registerForm);
+
 
         if (!isRegistered) {
             req.setAttribute("errorMessage", "This email has already been registered.");

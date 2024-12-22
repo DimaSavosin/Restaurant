@@ -2,14 +2,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="UTF-8" %>
 <html>
 <head>
     <title>Мой профиль</title>
 </head>
 <body>
-<h1>My page</h1>
-<p>Name: ${user.name}</p>
-<p>Email: ${user.email}</p>
+<h1>Мой профиль</h1>
+<p>Имя: ${user.name}</p>
+<p>Почта: ${user.email}</p>
 
 <h1>Мои бронирования</h1>
 <c:if test="${empty bookings}">

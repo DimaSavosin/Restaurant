@@ -1,7 +1,9 @@
 package ru.kpfu.servlets.controllers.user;
 
-import ru.kpfu.servlets.dto.UserDto;
-import ru.kpfu.servlets.models.Booking;
+
+import ru.kpfu.servlets.dto.bookingDTO.BookingResponseDTO;
+import ru.kpfu.servlets.dto.userDTO.UserDTO;
+
 import ru.kpfu.servlets.service.BookingService;
 import ru.kpfu.servlets.service.UserService;
 
@@ -34,8 +36,8 @@ public class ProfileServlets extends HttpServlet {
         }
 
         try {
-            UserDto userDto = userService.getUserById(userId);
-            List<Booking> bookings = bookingService.getActiveBookingsByUserId(userId);
+            UserDTO userDto = userService.getUserById(userId);
+            List<BookingResponseDTO> bookings = bookingService.getActiveBookingsByUserId(userId);
 
             if (userDto != null) {
                 req.setAttribute("user", userDto);

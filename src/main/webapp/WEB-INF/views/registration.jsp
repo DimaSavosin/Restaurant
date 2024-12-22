@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,19 +11,19 @@
 <body>
 
 <div class="form-container">
-    <form action="/ORIS_war_exploded/register" method="POST" class="form">
-        <h2>Registration</h2>
-        <label for="name">Name:</label>
+    <form action="${pageContext.request.contextPath}/register" method="POST" class="form">
+        <h2>Регистрация</h2>
+        <label for="name">Имя:</label>
         <input type="text" id="name" name="name" required><br><br>
-        <label for="email">Email:</label>
+        <label for="email">Почта:</label>
         <input type="email" id="email" name="email" required><br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-        <button type="submit">Register</button>
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" minlength="4"  required><br><br>
+        <button type="submit">Зарегестрироваться</button>
     </form>
-    <form action="/ORIS_war_exploded/login" method="GET">
+    <form action="${pageContext.request.contextPath}/login" method="GET">
         <div class="button2">
-        <button type="submit" class="login-btn">Login</button>
+        <button type="submit" class="login-btn">Войти</button>
         </div>
     </form>
 </div>

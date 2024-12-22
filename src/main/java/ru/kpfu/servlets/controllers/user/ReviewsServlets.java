@@ -1,6 +1,8 @@
 package ru.kpfu.servlets.controllers.user;
 
-import ru.kpfu.servlets.models.Review;
+
+import ru.kpfu.servlets.dto.reviewDTO.ReviewRequestDTO;
+import ru.kpfu.servlets.dto.reviewDTO.ReviewResponseDTO;
 import ru.kpfu.servlets.service.ReviewService;
 
 import javax.servlet.ServletConfig;
@@ -14,7 +16,8 @@ import java.util.List;
 
 @WebServlet("/reviews")
 public class ReviewsServlets extends HttpServlet {
-   private ReviewService reviewService;
+    private ReviewService reviewService;
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -24,23 +27,25 @@ public class ReviewsServlets extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        List<Review> reviews = reviewService.getAllReviewsWithUserNames();
+        List<ReviewResponseDTO> reviews = reviewService.getAllReviewsWithUserNames();
         req.setAttribute("reviews", reviews);
         req.getRequestDispatcher("/WEB-INF/views/reviews.jsp").forward(req, resp);
     }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-       int userId = (int) req.getSession().getAttribute("userId");
-       int rating = Integer.parseInt(req.getParameter("rating"));
-       String comment = req.getParameter("comment");
+        int userId = (int) req.getSession().getAttribute("userId");
+        int rating = Integer.parseInt(req.getParameter("rating"));
+        String comment = req.getParameter("comment");
 
-       Review review = Review.builder()
-               .userId(userId)
-               .rating(rating)
-               .comment(comment)
-               .build();
+        ReviewRequestDTO reviewRequestDTO = ReviewRequestDTO.builder()
+                .userId(userId)
+                .rating(rating)
+                .comment(comment)
+                .build();
 
-       reviewService.addReview(review);
-       resp.sendRedirect(req.getContextPath() + "/reviews");
+        reviewService.addReview(reviewRequestDTO);
+        resp.sendRedirect(req.getContextPath() + "/reviews");
     }
 }

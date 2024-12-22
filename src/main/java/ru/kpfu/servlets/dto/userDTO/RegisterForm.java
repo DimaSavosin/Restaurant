@@ -1,20 +1,15 @@
-package ru.kpfu.servlets.dto;
-
-
-
+package ru.kpfu.servlets.dto.userDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@Getter
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class UserDto {
-    private int id;
+@AllArgsConstructor
+public class RegisterForm {
     private String name;
     private String email;
-    private String role;
+    private String password;
 }
-

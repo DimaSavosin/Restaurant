@@ -1,6 +1,6 @@
 package ru.kpfu.servlets.controllers.admin;
 
-import ru.kpfu.servlets.dto.UserDto;
+import ru.kpfu.servlets.dto.userDTO.UserDTO;
 import ru.kpfu.servlets.service.UserService;
 
 import javax.servlet.ServletException;
@@ -24,7 +24,7 @@ public class AdminUserListServlets extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            List<UserDto> userList = userService.getAllUsers();
+            List<UserDTO> userList = userService.getAllUsers();
             req.setAttribute("userList", userList);
         } catch (Exception e) {
             e.printStackTrace();

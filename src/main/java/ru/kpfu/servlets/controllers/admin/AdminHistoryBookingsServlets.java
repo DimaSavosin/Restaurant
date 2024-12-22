@@ -1,6 +1,7 @@
 package ru.kpfu.servlets.controllers.admin;
 
-import ru.kpfu.servlets.models.Booking;
+
+import ru.kpfu.servlets.dto.bookingDTO.BookingResponseDTO;
 import ru.kpfu.servlets.service.BookingService;
 
 import javax.servlet.ServletException;
@@ -22,7 +23,7 @@ public class AdminHistoryBookingsServlets extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Booking> historicalBookings = bookingService.getHistoricalBookings();
+        List<BookingResponseDTO> historicalBookings = bookingService.getHistoricalBookings();
 
 
         req.setAttribute("historicalBookings", historicalBookings);

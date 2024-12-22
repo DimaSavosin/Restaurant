@@ -1,7 +1,8 @@
 package ru.kpfu.servlets.controllers.admin;
 
+
+import ru.kpfu.servlets.dto.menuDTO.MenuRequestDTO;
 import ru.kpfu.servlets.models.File;
-import ru.kpfu.servlets.models.Menu;
 import ru.kpfu.servlets.service.FileService;
 import ru.kpfu.servlets.service.MenuService;
 
@@ -77,13 +78,14 @@ public class AddMenuItemServlets extends HttpServlet {
         int fileId = savedFile.map(File::getId).orElseThrow(() -> new RuntimeException("File not saved"));
 
         // Сохранение блюда в БД
-        Menu menu = Menu.builder()
+        MenuRequestDTO menuRequestDTO = MenuRequestDTO.builder()
                 .name(name)
                 .description(description)
                 .price(price)
                 .fileId(fileId)
+                .imagePath(fileUrl) // Передаём путь изображения
                 .build();
-        menuService.addMenu(menu);
+        menuService.addMenu(menuRequestDTO);
         System.out.println("Saving file to: " + filePath);
 
 

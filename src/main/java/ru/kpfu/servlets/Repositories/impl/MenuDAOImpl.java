@@ -1,3 +1,4 @@
+// MenuDAOImpl.java
 package ru.kpfu.servlets.Repositories.impl;
 
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,8 @@ public class MenuDAOImpl implements MenuDAO {
     private static final String DELETE_MENU_SQL = "DELETE FROM menu WHERE id = ?";
     private static final String UPDATE_MENU_SQL = "UPDATE menu SET name = ?, description = ?, price = ?, file_id = ? WHERE id = ?";
     private static final String SELECT_MENU_SQL = "SELECT id, name, description, price, file_id FROM menu";
+    private static final String SELECT_MENU_WITH_IMAGE_SQL = "SELECT m.id, m.name, m.description, m.price, m.file_id, f.file_path AS image_path " +
+            "FROM menu m LEFT JOIN files f ON m.file_id = f.id";
     private static final String SELECT_MENU_BY_ID_SQL = "SELECT * FROM menu WHERE id = ?";
     private static final String UPDATE_MENU_FILE_SQL = "UPDATE menu SET file_id = ? WHERE id = ?";
 
@@ -95,6 +98,36 @@ public class MenuDAOImpl implements MenuDAO {
                         .description(description)
                         .price(price)
                         .fileId(fileId)
+                        .build());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return menuList;
+    }
+
+    @Override
+    public List<Menu> getAllWithImages() {
+        List<Menu> menuList = new ArrayList<>();
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_MENU_WITH_IMAGE_SQL);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String description = resultSet.getString("description");
+                int price = resultSet.getInt("price");
+                Integer fileId = resultSet.getObject("file_id", Integer.class);
+                String imagePath = resultSet.getString("image_path");
+
+                menuList.add(Menu.builder()
+                        .id(id)
+                        .name(name)
+                        .description(description)
+                        .price(price)
+                        .fileId(fileId)
+                        .imagePath(imagePath)
                         .build());
             }
         } catch (SQLException e) {

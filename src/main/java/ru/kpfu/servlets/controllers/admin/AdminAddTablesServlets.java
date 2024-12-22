@@ -1,6 +1,7 @@
 package ru.kpfu.servlets.controllers.admin;
 
-import ru.kpfu.servlets.models.Tables;
+
+import ru.kpfu.servlets.dto.tableDTO.TableRequestDTO;
 import ru.kpfu.servlets.service.TableService;
 
 
@@ -32,8 +33,13 @@ public class AdminAddTablesServlets extends HttpServlet {
         int seatingCapacity = Integer.parseInt(req.getParameter("seatingCapacity"));
         String location = req.getParameter("location");
 
-        Tables table = Tables.builder().tableNumber(tableNumber).seatingCapacity(seatingCapacity).location(location).build();
-        tableService.addTable(table);
+        TableRequestDTO tableRequestDTO = TableRequestDTO.builder()
+                .tableNumber(tableNumber)
+                .seatingCapacity(seatingCapacity)
+                .location(location)
+                .build();
+
+        tableService.addTable(tableRequestDTO);
         resp.sendRedirect(req.getContextPath() + "/admin/tables");
 
 

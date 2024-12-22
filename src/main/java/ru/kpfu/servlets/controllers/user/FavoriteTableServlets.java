@@ -1,6 +1,7 @@
 package ru.kpfu.servlets.controllers.user;
 
-import ru.kpfu.servlets.models.Tables;
+
+import ru.kpfu.servlets.dto.tableDTO.TableResponseDTO;
 import ru.kpfu.servlets.service.FavoriteTableService;
 import ru.kpfu.servlets.service.TableService;
 
@@ -29,9 +30,10 @@ public class FavoriteTableServlets extends HttpServlet {
         int userId = (int) req.getSession().getAttribute("userId");
 
         List<Integer> favoriteTableIds = favoriteTableService.getFavoriteTables(userId);
-        List<Tables> favoriteTables = favoriteTableIds.stream()
+        List<TableResponseDTO> favoriteTables = favoriteTableIds.stream()
                 .map(tableService::getTableById)
                 .collect(Collectors.toList());
+
 
         req.setAttribute("favoriteTables", favoriteTables);
         req.getRequestDispatcher("/WEB-INF/views/favoriteTables.jsp").forward(req, resp);

@@ -1,7 +1,9 @@
 package ru.kpfu.servlets.controllers.user;
 
-import ru.kpfu.servlets.models.Booking;
-import ru.kpfu.servlets.models.Tables;
+
+import ru.kpfu.servlets.dto.tableDTO.TableResponseDTO;
+import ru.kpfu.servlets.dto.bookingDTO.BookingRequestDTO;
+
 import ru.kpfu.servlets.service.BookingService;
 import ru.kpfu.servlets.service.TableService;
 
@@ -35,7 +37,7 @@ public class BookingServlets extends HttpServlet {
         int duration = Integer.parseInt(req.getParameter("duration"));
 
 
-        List<Tables> availableTables = tableService.getAvailableTables(location, bookingDate, bookingTime, duration);
+        List<TableResponseDTO> availableTables = tableService.getAvailableTables(location, bookingDate, bookingTime, duration);
 
         req.setAttribute("availableTables", availableTables);
         req.setAttribute("bookingDate", bookingDate);
@@ -54,8 +56,8 @@ public class BookingServlets extends HttpServlet {
         LocalTime bookingTime = LocalTime.parse(req.getParameter("bookingTime"));
         int duration = Integer.parseInt(req.getParameter("duration"));
 
-        Booking booking = Booking.builder()
-                .user_id(userId)
+        BookingRequestDTO bookingRequestDTO = BookingRequestDTO.builder()
+                .userId(userId)
                 .tableId(tableId)
                 .bookingDate(bookingDate)
                 .bookingTime(bookingTime)
@@ -63,7 +65,7 @@ public class BookingServlets extends HttpServlet {
                 .status("pending")
                 .build();
 
-        bookingService.addBooking(booking);
+        bookingService.addBooking(bookingRequestDTO);
 
         req.getRequestDispatcher("/WEB-INF/views/bookingSuccess.jsp").forward(req, resp);
     }
