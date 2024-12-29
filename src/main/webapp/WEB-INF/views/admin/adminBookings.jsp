@@ -30,15 +30,17 @@
             <td>${booking.bookingTime}</td>
             <td>${booking.status}</td>
             <td>
-                <!-- Кнопка для подтверждения -->
-                <form action="${pageContext.request.contextPath}/admin/bookings/confirm" method="post">
-                    <input type="hidden" name="bookingId" value="${booking.id}" />
+
+                <!-- Кнопка подтверждения -->
+                <form action="${pageContext.request.contextPath}/admin/bookings/action" method="post" style="display:inline;">
+                    <input type="hidden" name="bookingId" value="${booking.id}">
+                    <input type="hidden" name="action" value="confirm">
                     <button type="submit" ${booking.status == 'confirmed' ? 'disabled' : ''}>Подтвердить</button>
                 </form>
-
-                <!-- Кнопка для отмены -->
-                <form action="${pageContext.request.contextPath}/admin/bookings/cancel" method="post" style="display: inline;">
-                    <input type="hidden" name="bookingId" value="${booking.id}" />
+                <!-- Кнопка отмены -->
+                <form action="${pageContext.request.contextPath}/admin/bookings/action" method="post" style="display:inline;">
+                    <input type="hidden" name="bookingId" value="${booking.id}">
+                    <input type="hidden" name="action" value="cancel">
                     <button type="submit" ${booking.status == 'cancelled' ? 'disabled' : ''}>Отменить</button>
                 </form>
             </td>

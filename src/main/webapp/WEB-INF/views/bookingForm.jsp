@@ -19,7 +19,7 @@
 
 
     <label for="bookingTime">Время бронирования:</label>
-    <input type = "time" id="bookingTime" name="bookingTime" required>
+    <input type = "time" id="bookingTime" name="bookingTime"  min = "10:00" max="22:00" required>
 
 
     <label for="duration">Продолжительность (в часах):</label>
@@ -31,5 +31,6 @@
 
     <button type="submit">Посмотреть столы</button>
 </form>
+${errorMessage}
 </body>
 </html>

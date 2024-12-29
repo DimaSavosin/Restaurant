@@ -26,6 +26,6 @@
     <br><br>
     <button type="submit">Создать</button>
 </form>
-
+<p>${errorMessage}</p>
 </body>
 </html>

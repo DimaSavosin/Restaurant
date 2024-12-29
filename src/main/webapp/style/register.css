@@ -1,64 +1,82 @@
-/* Общие стили */
 body {
-    font-family: Arial, sans-serif; /* Шрифт для всего документа */
-    background-color: #f4f4f4; /* Цвет фона страницы */
-    margin: 0; /* Убираем отступы */
-    padding: 0; /* Убираем внутренние отступы */
-    display: flex; /* Используем flexbox для центрирования */
-    justify-content: center; /* Центрируем по горизонтали */
-    align-items: center; /* Центрируем по вертикали */
-    height: 100vh; /* Высота на весь экран */
+    font-family: 'Lora', serif;
+    background-color: #f9f9f9; /* Светлый фон */
+    color: #333333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-/* Стили контейнера формы */
 .form-container {
-    background-color: white; /* Цвет фона формы */
-    padding: 20px; /* Внутренние отступы */
-    border-radius: 10px; /* Скругленные углы */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень */
-    width: 300px; /* Ширина формы */
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
 }
 
-/* Стили заголовка формы */
-h2 {
-    text-align: center; /* Центрируем заголовок */
-    margin-bottom: 20px; /* Отступ снизу */
-    color: #333; /* Цвет текста */
+.form h2 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 20px;
+    color: #b56724; /* Теплый оранжевый акцент */
 }
 
-/* Стили меток */
 label {
-    margin-bottom: 5px; /* Отступ снизу */
-    display: block; /* Отображаем метки как блоки */
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
 }
 
-/* Стили полей ввода */
 input {
-    width: 100%; /* Ширина 100% */
-    padding: 10px; /* Внутренние отступы */
-    margin-bottom: 15px; /* Отступ снизу */
-    border: 1px solid #ccc; /* Цвет границы */
-    border-radius: 5px; /* Скругленные углы */
-    box-sizing: border-box; /* Включаем отступы и границы в ширину */
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
 }
 
-/* Стили кнопки */
 button {
-    width: 100%; /* Ширина 100% */
-    padding: 10px; /* Внутренние отступы */
-    background-color: #4CAF50; /* Зеленый цвет фона */
-    color: white; /* Цвет текста */
-    border: none; /* Убираем границу */
-    border-radius: 5px; /* Скругленные углы */
-    cursor: pointer; /* Указатель при наведении */
-    font-size: 16px; /* Размер шрифта */
+    background-color: #b56724; /* Теплый оранжевый цвет */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-/* Эффект при наведении на кнопку */
 button:hover {
-    background-color: #45a049; /* Темнее при наведении */
+    background-color: #8c4518; /* Темный оранжевый при наведении */
 }
-.button2{
+
+p {
+    color: red; /* Красный цвет для ошибок */
+    font-size: 0.9rem;
     margin-top: 10px;
 }
 
+.login-btn {
+    margin-top: 10px;
+    background-color: #f5f5f5; /* Легкий серый для кнопки входа */
+    color: #333333;
+    border: 1px solid #ccc;
+}
+
+.login-btn:hover {
+    background-color: #eaeaea;
+}
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    text-align: left; /* Сообщение выровнено влево для соответствия полю */
+}
