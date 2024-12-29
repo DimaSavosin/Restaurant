@@ -33,6 +33,6 @@
     </c:forEach>
     </tbody>
 </table>
-<a href="${pageContext.request.contextPath}/thanks">Главное меню</a>
+<a href="${pageContext.request.contextPath}/mainPage">Главное меню</a>
 </body>
 </html>
