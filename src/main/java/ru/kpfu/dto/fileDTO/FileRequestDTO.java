@@ -7,6 +7,6 @@ import lombok.*;
 @AllArgsConstructor
 @Setter
 public class FileRequestDTO {
-    private String name; // Имя файла
-    private String path; // Путь к файлу
+    private String name;
+    private String path;
 }

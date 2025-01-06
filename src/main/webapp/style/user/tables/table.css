@@ -1,0 +1,81 @@
+body {
+    font-family: 'Lora', serif;
+    background-color: #f9f9f9;
+    color: #333333;
+    margin: 0;
+    padding: 20px;
+}
+
+.available-tables__header {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.available-tables__message {
+    text-align: center;
+    color: #777777;
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+.available-tables__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+
+.table-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    position: relative;
+}
+
+.table-card__favorite {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #FFD700; /* Золотой цвет */
+    font-size: 1.5rem;
+}
+
+.table-card__number {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.table-card__info {
+    color: #555555;
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.table-card__form {
+    margin-top: 15px;
+}
+
+.table-card__button {
+    background-color: #b56724;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.table-card__button:hover {
+    background-color: #8c4518;
+}
+

@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class File {
     private int id;
-    private String name; // Имя файла
-    private String path; // Путь к файлу
+    private String name;
+    private String path;
 }

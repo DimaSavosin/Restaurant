@@ -1,9 +1,12 @@
 package ru.kpfu.service.impl;
 
 import ru.kpfu.Repositories.FavoriteTableDAO;
+import ru.kpfu.dto.mapper.TableMapper;
+import ru.kpfu.dto.tableDTO.TableResponseDTO;
 import ru.kpfu.service.FavoriteTableService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FavoriteTableServiceImpl implements FavoriteTableService {
     private final FavoriteTableDAO favoriteTableDAO;
@@ -20,11 +23,14 @@ public class FavoriteTableServiceImpl implements FavoriteTableService {
         favoriteTableDAO.removeFavoriteTable(userId, tableId);
     }
 
-    public List<Integer> getFavoriteTables(int userId) {
-        return favoriteTableDAO.getFavoriteTablesByUserId(userId);
+    public List<Integer> getFavoriteTablesID(int userId) {
+        return favoriteTableDAO.getFavoriteTablesIdByUserId(userId);
     }
 
-    public boolean isFavorite(int userId, int tableId) {
-        return favoriteTableDAO.isFavorite(userId, tableId);
+    @Override
+    public List<TableResponseDTO> getFavoriteTablesWithDetails(int userId) {
+        return favoriteTableDAO.getFavoriteTableDetails(userId).stream()
+                .map(TableMapper::toResponseDTO)
+                .collect(Collectors.toList());
     }
 }

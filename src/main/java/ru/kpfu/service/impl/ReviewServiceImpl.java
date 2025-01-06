@@ -1,6 +1,7 @@
 package ru.kpfu.service.impl;
 
 import ru.kpfu.Repositories.ReviewDAO;
+import ru.kpfu.dto.mapper.ReviewMapper;
 import ru.kpfu.dto.reviewDTO.ReviewRequestDTO;
 import ru.kpfu.dto.reviewDTO.ReviewResponseDTO;
 import ru.kpfu.models.Review;
@@ -10,44 +11,31 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ReviewServiceImpl implements ReviewService {
-    private ReviewDAO reviewDAO;
+    private final ReviewDAO reviewDAO;
 
     public ReviewServiceImpl(ReviewDAO reviewDAO) {
         this.reviewDAO = reviewDAO;
     }
 
     public void addReview(ReviewRequestDTO reviewRequestDTO) {
-        Review review = mapToEntity(reviewRequestDTO);
+        Review review = ReviewMapper.toEntity(reviewRequestDTO);
         reviewDAO.save(review);
     }
 
     public List<ReviewResponseDTO> getAllReviewsWithUserNames() {
         return reviewDAO.getReviewsWithUserName().stream()
-                .map(this::mapToResponseDTO)
+                .map(ReviewMapper::toResponseDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
     public double getAverageRating() {
-        return reviewDAO.getAverageRating();
+        double averageRating = reviewDAO.getAverageRating();
+        return Math.round(averageRating * 10.0) / 10.0;
     }
 
-    private Review mapToEntity(ReviewRequestDTO reviewRequestDTO) {
-        return Review.builder()
-                .userId(reviewRequestDTO.getUserId())
-                .rating(reviewRequestDTO.getRating())
-                .comment(reviewRequestDTO.getComment())
-                .build();
-    }
-
-    private ReviewResponseDTO mapToResponseDTO(Review review) {
-        return ReviewResponseDTO.builder()
-                .id(review.getId())
-                .userId(review.getUserId())
-                .userName(review.getUserName())
-                .rating(review.getRating())
-                .comment(review.getComment())
-                .createdAt(review.getCreatedAt())
-                .build();
+    @Override
+    public void deleteReviewById(int id) {
+        reviewDAO.deleteReviewById(id);
     }
 }

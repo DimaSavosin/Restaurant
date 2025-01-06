@@ -1,0 +1,102 @@
+body {
+    font-family: 'Lora', serif;
+    background-color: #f9f9f9;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-admin {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.menu-admin__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #b56724;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.menu-admin__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.menu-card {
+    font-family: 'Lora', serif;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    text-align: center;
+    border: 1px solid #eeeeee;
+    position: relative;
+    padding-bottom: 60px;
+}
+
+.menu-card__image {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.menu-card__name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.menu-card__description {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.menu-card__price {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.menu-card__delete-btn {
+    background-color: #e74c3c;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: background-color 0.3s;
+}
+
+.menu-card__delete-btn:hover {
+    background-color: #c0392b;
+}
+
+.menu-admin__add-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #b56724;
+    color: #ffffff;
+    text-align: center;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    max-width: 200px;
+}
+
+.menu-admin__add-button:hover {
+    background-color: #8c4518;
+}

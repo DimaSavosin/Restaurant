@@ -5,49 +5,51 @@
 <html>
 <head>
     <title>Управление бронированиями</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/admin/adminBookings/adminBookings.css">
 </head>
 <body>
-<h1>Управление бронированиями</h1>
-<table border="1">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Имя</th>
-        <th>Номер стола</th>
-        <th>Дата</th>
-        <th>Время</th>
-        <th>Статус</th>
-        <th>Действия</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="booking" items="${activeBookings}">
+<div class="booking-admin">
+    <h1 class="booking-admin__title">Управление бронированиями</h1>
+    <table class="booking-admin__table">
+        <thead>
         <tr>
-            <td>${booking.id}</td>
-            <td>${booking.userName}</td>
-            <td>${booking.tableId}</td>
-            <td>${booking.bookingDate}</td>
-            <td>${booking.bookingTime}</td>
-            <td>${booking.status}</td>
-            <td>
-
-                <!-- Кнопка подтверждения -->
-                <form action="${pageContext.request.contextPath}/admin/bookings/action" method="post" style="display:inline;">
-                    <input type="hidden" name="bookingId" value="${booking.id}">
-                    <input type="hidden" name="action" value="confirm">
-                    <button type="submit" ${booking.status == 'confirmed' ? 'disabled' : ''}>Подтвердить</button>
-                </form>
-                <!-- Кнопка отмены -->
-                <form action="${pageContext.request.contextPath}/admin/bookings/action" method="post" style="display:inline;">
-                    <input type="hidden" name="bookingId" value="${booking.id}">
-                    <input type="hidden" name="action" value="cancel">
-                    <button type="submit" ${booking.status == 'cancelled' ? 'disabled' : ''}>Отменить</button>
-                </form>
-            </td>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Номер стола</th>
+            <th>Дата</th>
+            <th>Время</th>
+            <th>Статус</th>
+            <th>Действия</th>
         </tr>
-    </c:forEach>
-    </tbody>
-</table>
-<a href="${pageContext.request.contextPath}/admin/bookingHistory">История бронирования</a>
+        </thead>
+        <tbody>
+        <c:forEach var="booking" items="${activeBookings}">
+            <tr>
+                <td>${booking.id}</td>
+                <td>${booking.userName}</td>
+                <td>${booking.tableId}</td>
+                <td>${booking.bookingDate}</td>
+                <td>${booking.bookingTime}</td>
+                <td>${booking.status}</td>
+                <td>
+                    <form action="${pageContext.request.contextPath}/admin/bookingsAction" method="post" style="display:inline;">
+                        <input type="hidden" name="bookingId" value="${booking.id}">
+                        <input type="hidden" name="action" value="confirm">
+                        <button type="submit" class="booking-admin__button" ${booking.status == 'confirmed' ? 'disabled' : ''}>Подтвердить</button>
+                    </form>
+                    <form action="${pageContext.request.contextPath}/admin/bookingsAction" method="post" style="display:inline;">
+                        <input type="hidden" name="bookingId" value="${booking.id}">
+                        <input type="hidden" name="action" value="cancel">
+                        <button type="submit" class="booking-admin__button" ${booking.status == 'cancelled' ? 'disabled' : ''}>Отменить</button>
+                    </form>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+    <a href="${pageContext.request.contextPath}/admin/bookingHistory" class="booking-admin__link">История бронирования</a>
+</div>
 </body>
 </html>

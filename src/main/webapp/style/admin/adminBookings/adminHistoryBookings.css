@@ -1,0 +1,69 @@
+body {
+    font-family: 'Lora', serif;
+    background-color: #f9f9f9;
+    color: #333333;
+    margin: 0;
+    padding: 20px;
+}
+
+.history-bookings {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.history-bookings__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color:#333333;
+    margin-bottom: 20px;
+}
+
+.history-bookings__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.history-bookings__table th,
+.history-bookings__table td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #eeeeee;
+}
+
+.history-bookings__table th {
+    background-color: #b56724;
+    color: #ffffff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+}
+
+.history-bookings__table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.history-bookings__table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.history-bookings__link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #b56724;
+    color: #ffffff;
+    text-align: center;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.history-bookings__link:hover {
+    background-color: #8c4518;
+}

@@ -11,7 +11,7 @@ public class Menu {
     private String name;
     private String description;
     private int price;
-    private Integer fileId; // ID файла
-    private String imagePath; // Путь к изображению
+    private int fileId;
+    private String imagePath;
 }
 

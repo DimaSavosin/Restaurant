@@ -1,0 +1,92 @@
+
+body.admin {
+    font-family: 'Lora', serif;
+    background-color: #f9f9f9;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+.admin__header {
+    background-color: #ffffff;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+
+}
+
+.admin__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #333333;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+
+
+
+.admin__navigation {
+    margin: 20px 0;
+    width: 100%;
+    max-width: 800px;
+}
+
+.admin__menu {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.admin__menu-item {
+    text-align: center;
+}
+
+.admin__menu-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #b56724;
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+    height: 50px;
+    width: 200px;
+    text-align: center;
+}
+
+.admin__menu-link:hover {
+    background-color: #8c4518;
+    transform: scale(1.05);
+}
+
+
+.admin__footer {
+    margin-top: auto;
+    padding: 20px;
+}
+
+.admin__logout {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #b56724;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.admin__logout:hover {
+    background-color: #8c4518;
+    transform: scale(1.05);
+}

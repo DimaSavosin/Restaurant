@@ -1,0 +1,58 @@
+body {
+    font-family: 'Lora', serif;
+    background-color: #f9f9f9;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.error-page {
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+}
+
+.error-page__header {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #b56724;
+    margin-bottom: 20px;
+}
+
+.error-page__message {
+    margin-bottom: 20px;
+}
+
+.error-page__text {
+    font-size: 1rem;
+    color: #555555;
+}
+
+.error-page__link {
+    display: inline-block;
+    background-color: #b56724;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.error-page__link:hover {
+    background-color: #8c4518;
+}
+.error-page__status {
+    font-size: 1.5rem;
+    color: #b56724;
+    margin-bottom: 10px;
+    font-weight: bold;
+}

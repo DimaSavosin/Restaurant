@@ -1,0 +1,116 @@
+
+.page {
+    font-family: 'Lora', serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+.add-dish {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.add-dish__header {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+.add-dish__form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.add-dish__label {
+    font-size: 1rem;
+    color: #555555;
+    text-align: start;
+    font-weight: bold;
+}
+
+.add-dish__input, .add-dish__textarea, .add-dish__file-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    background: #f9f9f9;
+    transition: border-color 0.3s;
+}
+
+.add-dish__input:focus, .add-dish__textarea:focus, .add-dish__file-input:focus {
+    outline: none;
+    border-color: #b56724;
+}
+
+.add-dish__textarea {
+    height: 100px;
+    resize: none;
+}
+
+
+.add-dish__button {
+    background-color: #b56724;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-dish__button:hover {
+    background-color: #8c4518;
+}
+
+.add-dish__link {
+    display: block;
+    margin-top: 20px;
+    color: #007BFF;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.add-dish__link:hover {
+    color: #0056b3;
+}
+
+
+.add-dish__error-message {
+    color: #d9534f;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+
+.add-dish__file-input {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f9f9f9;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.add-dish__file-input:focus {
+    outline: none;
+    border-color: #b56724;
+}

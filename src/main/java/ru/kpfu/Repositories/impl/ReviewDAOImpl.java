@@ -18,13 +18,12 @@ public class ReviewDAOImpl implements ReviewDAO {
     private static final String DELETE_REVIEW_SQL = "DELETE FROM reviews WHERE id = ?";
     private static final String UPDATE_REVIEW_SQL = "UPDATE reviews SET user_id = ?, rating = ?, comment = ?, created_at = ? WHERE id = ?";
     private static final String SELECT_REVIEWS_SQL = "SELECT * FROM reviews ORDER BY created_at DESC";
-    private static final String SELECT_REVIEWS_BY_ID_SQL = "SELECT * FROM reviews WHERE id = ?";
-    private static final String SELECT_REVIEWS_BY_USER_ID_SQL = "SELECT * FROM reviews WHERE user_id = ?";
     private static final String SELECT_REVIEWS_WITH_USER_NAME_SQL = "SELECT r.id, r.rating, r.comment, r.created_at, r.user_id, u.name AS user_name " +
             "FROM reviews r " +
             "JOIN users u ON r.user_id = u.id " +
             "ORDER BY r.created_at DESC";
-    private static final String SELECT_AVG_RATING_SQL = "select AVG(rating) from reviews";
+    private static final String SELECT_AVG_RATING_SQL = "SELECT AVG(rating) FROM reviews";
+    private static final String DELETE_REVIEW_BY_ID = "DELETE FROM reviews WHERE id = ?";
     @Override
     public void save(Review review) {
         try (Connection connection = dataSource.getConnection();
@@ -97,50 +96,6 @@ public class ReviewDAOImpl implements ReviewDAO {
         return reviews;
     }
 
-    @Override
-    public Optional<Review> getReviewsById(int id) {
-        try (Connection connection = dataSource.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_REVIEWS_BY_ID_SQL);
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                return Optional.of(Review.builder()
-                        .id(resultSet.getInt("id"))
-                        .userId(resultSet.getInt("user_id"))
-                        .rating(resultSet.getInt("rating"))
-                        .comment(resultSet.getString("comment"))
-                        .createdAt(resultSet.getObject("created_at", Timestamp.class))
-                        .build());
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return Optional.empty();
-    }
-
-    @Override
-    public List<Review> getReviewsByUserId(int userId) {
-        List<Review> reviews = new ArrayList<>();
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_REVIEWS_BY_USER_ID_SQL)) {
-            preparedStatement.setInt(1, userId);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                reviews.add(Review.builder()
-                        .id(resultSet.getInt("id"))
-                        .userId(resultSet.getInt("user_id"))
-                        .rating(resultSet.getInt("rating"))
-                        .comment(resultSet.getString("comment"))
-                        .createdAt(resultSet.getObject("created_at", Timestamp.class))
-                        .build());
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return reviews;
-    }
 
     @Override
     public List<Review> getReviewsWithUserName() {
@@ -179,6 +134,17 @@ public class ReviewDAOImpl implements ReviewDAO {
             throw new RuntimeException(e);
         }
         return 0.0;
+    }
+
+    @Override
+    public void deleteReviewById(int id) {
+        try(Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_REVIEW_BY_ID);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

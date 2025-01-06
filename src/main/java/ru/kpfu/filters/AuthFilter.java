@@ -13,9 +13,9 @@ public class AuthFilter implements Filter{
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
 
-        Object userId = request.getSession().getAttribute("userId");
+        Integer userId = (Integer) request.getSession().getAttribute("userId");
         if (userId == null) {
-            response.sendRedirect(request.getContextPath()+"/register?error=notAuthorized");
+            response.sendRedirect(request.getContextPath()+"/login?error=notAuthorized");
             return;
         }
 

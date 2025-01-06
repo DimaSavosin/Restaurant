@@ -18,6 +18,7 @@ public class TableDAOImpl implements TableDAO {
     private static final String INSERT_TABLE_SQL = "INSERT INTO tables (table_number, seating_capacity, location) VALUES (?, ?, ?)";
     private static final String DELETE_TABLE_SQL = "DELETE FROM tables WHERE id = ?";
     private static final String UPDATE_TABLE_SQL = "UPDATE tables SET table_number = ?, seating_capacity = ?, location = ? WHERE id = ?";
+    private static final String SELECT_TABLE_BY_ID_SQL = "SELECT * FROM tables WHERE id = ?";
     private static final String FILTER_TABLE_SQL = """
         SELECT t.* FROM tables t
            WHERE t.location = ?
@@ -132,16 +133,15 @@ public class TableDAOImpl implements TableDAO {
                 );
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Ошибка при получении доступных столов", e);
+            throw new RuntimeException(e);
         }
         return availableTables;
     }
 
     @Override
     public Optional<Table> getTableById(int tableId) {
-        String sql = "SELECT * FROM tables WHERE id = ?";
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_TABLE_BY_ID_SQL)) {
 
             preparedStatement.setInt(1, tableId);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -156,9 +156,9 @@ public class TableDAOImpl implements TableDAO {
                 return Optional.of(table);
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Failed to fetch table by ID", e);
+            throw new RuntimeException(e);
         }
-        return Optional.empty(); // Если стол с таким ID не найден
+        return Optional.empty();
     }
 @Override
     public boolean isTableNumberExists(int tableNumber) {

@@ -13,11 +13,11 @@ import lombok.*;
 
 public class Booking {
     private int id;
-    private int user_id;
+    private int userId;
     private int tableId;
     private LocalDate bookingDate;
     private LocalTime bookingTime;
-    private int duration; // Продолжительность в часах
+    private int duration;
     private String status;
     private String userName;
 }

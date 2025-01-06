@@ -7,11 +7,11 @@ $(document).ready(function () {
             const menuContainer = $('#menu-container');
             data.forEach(item => {
                 const menuItem = `
-                    <div class="menu-item">
-                        <img src="${item.imagePath}" alt="${item.name}">
-                        <h3>${item.name}</h3>
-                        <p>${item.description}</p>
-                        <p>Цена: ${item.price} ₽</p>
+                    <div class="menu-card">
+                        <img class="menu-card__image" src="${item.imagePath}" alt="${item.name}">
+                        <h3 class="menu-card__name">${item.name}</h3>
+                        <p class="menu-card__description">${item.description}</p>
+                        <p class="menu-card__price">Цена: ${item.price} ₽</p>
                     </div>`;
                 menuContainer.append(menuItem);
             });

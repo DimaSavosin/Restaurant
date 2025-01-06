@@ -21,8 +21,6 @@ public class MenuDAOImpl implements MenuDAO {
     private static final String SELECT_MENU_SQL = "SELECT id, name, description, price, file_id FROM menu";
     private static final String SELECT_MENU_WITH_IMAGE_SQL = "SELECT m.id, m.name, m.description, m.price, m.file_id, f.file_path AS image_path " +
             "FROM menu m LEFT JOIN files f ON m.file_id = f.id";
-    private static final String SELECT_MENU_BY_ID_SQL = "SELECT * FROM menu WHERE id = ?";
-    private static final String UPDATE_MENU_FILE_SQL = "UPDATE menu SET file_id = ? WHERE id = ?";
     private static final String DELETE_DISH_SQL = "DELETE FROM menu WHERE id = ?";
     private static final String VALIDATE_UNIQUE_DISH_NAME = "SELECT COUNT(*) FROM menu WHERE name = ?";
 
@@ -34,11 +32,7 @@ public class MenuDAOImpl implements MenuDAO {
             preparedStatement.setString(1, menu.getName());
             preparedStatement.setString(2, menu.getDescription());
             preparedStatement.setInt(3, menu.getPrice());
-            if (menu.getFileId() != null) {
-                preparedStatement.setInt(4, menu.getFileId());
-            } else {
-                preparedStatement.setNull(4, Types.INTEGER);
-            }
+            preparedStatement.setInt(4, menu.getFileId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -67,11 +61,7 @@ public class MenuDAOImpl implements MenuDAO {
             preparedStatement.setString(1, menu.getName());
             preparedStatement.setString(2, menu.getDescription());
             preparedStatement.setInt(3, menu.getPrice());
-            if (menu.getFileId() != null) {
-                preparedStatement.setInt(4, menu.getFileId());
-            } else {
-                preparedStatement.setNull(4, Types.INTEGER);
-            }
+            preparedStatement.setInt(4, menu.getFileId());
             preparedStatement.setInt(5, menu.getId());
 
             preparedStatement.executeUpdate();
@@ -92,7 +82,7 @@ public class MenuDAOImpl implements MenuDAO {
                 String name = resultSet.getString("name");
                 String description = resultSet.getString("description");
                 int price = resultSet.getInt("price");
-                Integer fileId = resultSet.getObject("file_id", Integer.class);
+                int fileId = resultSet.getInt("file_id");
 
                 menuList.add(Menu.builder()
                         .id(id)
@@ -120,7 +110,7 @@ public class MenuDAOImpl implements MenuDAO {
                 String name = resultSet.getString("name");
                 String description = resultSet.getString("description");
                 int price = resultSet.getInt("price");
-                Integer fileId = resultSet.getObject("file_id", Integer.class);
+                int fileId = resultSet.getInt("file_id");
                 String imagePath = resultSet.getString("image_path");
 
                 menuList.add(Menu.builder()
@@ -137,7 +127,6 @@ public class MenuDAOImpl implements MenuDAO {
         }
         return menuList;
     }
-
     @Override
     public void deleteDishById(int id) {
         try (Connection connection = dataSource.getConnection();
@@ -150,45 +139,6 @@ public class MenuDAOImpl implements MenuDAO {
     }
 
 
-    @Override
-    public Optional<Menu> getMenuById(int id) {
-        try (Connection connection = dataSource.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_MENU_BY_ID_SQL);
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                String name = resultSet.getString("name");
-                String description = resultSet.getString("description");
-                int price = resultSet.getInt("price");
-                Integer fileId = resultSet.getObject("file_id", Integer.class);
-
-                return Optional.of(
-                        Menu.builder()
-                                .id(id)
-                                .name(name)
-                                .description(description)
-                                .price(price)
-                                .fileId(fileId)
-                                .build()
-                );
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return Optional.empty();
-    }
-
-    @Override
-    public void updateFileId(int menuId, int fileId) {
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_MENU_FILE_SQL)) {
-            preparedStatement.setInt(1, fileId);
-            preparedStatement.setInt(2, menuId);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @Override
     public boolean isDishNameExists(String name) {

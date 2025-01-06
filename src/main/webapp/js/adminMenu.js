@@ -1,21 +1,21 @@
 $(document).ready(function () {
-    // Получение данных меню
+
     $.ajax({
         url: '/ORIS_war_exploded/menuData',
         type: 'GET',
         dataType: 'json',
         success: function (data) {
             const menuContainer = $('#menu-container');
-            menuContainer.empty(); // Очищаем контейнер перед добавлением новых элементов
+            menuContainer.empty();
 
             data.forEach(item => {
                 const menuItem = `
-                    <div class="menu-item" data-id="${item.id}">
-                        <img src="${item.imagePath}" alt="${item.name}">
-                        <h3>${item.name}</h3>
-                        <p>${item.description}</p>
-                        <p>Цена: ${item.price} ₽</p>
-                        <button class="delete-btn" data-id="${item.id}">Удалить</button>
+                    <div class="menu-card" data-id="${item.id}">
+                        <img src="${item.imagePath}" alt="${item.name}" class="menu-card__image">
+                        <h3 class="menu-card__name">${item.name}</h3>
+                        <p class="menu-card__description">${item.description}</p>
+                        <p class="menu-card__price">Цена: ${item.price} ₽</p>
+                        <button class="menu-card__delete-btn" data-id="${item.id}">Удалить</button>
                     </div>`;
                 menuContainer.append(menuItem);
             });
@@ -25,21 +25,20 @@ $(document).ready(function () {
         }
     });
 
-    // Обработчик удаления блюда
-    $(document).on('click', '.delete-btn', function () {
-        const menuId = $(this).data('id'); // $(this) это текущий HTML-элемент, на который пользователь кликнул.
-        //data('id') возвращает значение у аттрибута data-id
-            $.ajax({
-                url: '/ORIS_war_exploded/admin/deleteDish',
-                type: 'POST',
-                data: { menuId: menuId },
-                success: function () {
-                    $(`.menu-item[data-id="${menuId}"]`).remove();
-                },
-                error: function () {
-                    alert('Ошибка при удалении блюда.');
-                }
-            });
 
+    $(document).on('click', '.menu-card__delete-btn', function () {
+        const menuId = $(this).data('id');
+        $.ajax({
+            url: '/ORIS_war_exploded/admin/menuDelete',
+            type: 'POST',
+            data: { menuId: menuId },
+            success: function () {
+
+                $(`.menu-card[data-id="${menuId}"]`).remove();
+            },
+            error: function () {
+                alert('Ошибка при удалении блюда.');
+            }
+        });
     });
 });

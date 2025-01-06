@@ -65,7 +65,7 @@ public class UserDAOImpl implements UserDAO {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getPassword());
-            preparedStatement.setString(4, user.getRole()); // Обновляем роль
+            preparedStatement.setString(4, user.getRole());
             preparedStatement.setInt(5, user.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -86,7 +86,7 @@ public class UserDAOImpl implements UserDAO {
                 String name = resultSet.getString("name");
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
-                String role = resultSet.getString("role"); // Получаем роль
+                String role = resultSet.getString("role");
                 users.add(User.builder()
                         .id(id)
                         .name(name)
@@ -111,7 +111,7 @@ public class UserDAOImpl implements UserDAO {
                 if (resultSet.next()) {
                     String name = resultSet.getString("name");
                     String email = resultSet.getString("email");
-                    String role = resultSet.getString("role"); // Получаем роль
+                    String role = resultSet.getString("role");
 
                     User user = User.builder()
                             .id(id)

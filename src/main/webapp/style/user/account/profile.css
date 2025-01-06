@@ -1,0 +1,139 @@
+body {
+    font-family: 'Lora', serif;
+    background-color: #f9f9f9;
+    color: #333333;
+    margin: 0;
+    padding: 20px;
+}
+
+.profile-header {
+    font-family: 'Playfair Display', serif;
+    color: #333333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.profile-info {
+    font-size: 1.1rem;
+    color: #555555;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.section-header {
+    font-family: 'Playfair Display', serif;
+    color: #555555;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.no-bookings {
+    font-size: 1rem;
+    color: #777777;
+    margin-top: 10px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+    border: 1px solid #eeeeee;
+    padding: 10px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.table th {
+    background-color: #f5f5f5;
+    color: #333333;
+    font-weight: bold;
+}
+
+.table td:nth-child(2) {
+    width: 120px; /* Дата */
+}
+
+.table td:nth-child(3) {
+    width: 80px; /* Время */
+}
+
+.table td:nth-child(4) {
+    width: 100px; /* Продолжительность */
+}
+
+.table td:nth-child(6) {
+    width: 200px; /* Действия */
+}
+
+.table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table td .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.button {
+    background-color: #b56724;
+    color: #ffffff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #8c4518;
+}
+
+.action-form {
+    display: inline-block;
+}
+
+.links {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.link {
+    display: inline-block;
+    background-color: #b56724;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+}
+
+.link:hover {
+    background-color: #8c4518;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow-x: auto;
+}
+
+button[disabled] {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
